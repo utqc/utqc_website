@@ -15,11 +15,6 @@ h1, h2, h3 {
     font-weight: 600;
 }
 
-.quantum-accent {
-    font-family: "Quantico", sans-serif;
-}
-
-
 
 /* Navbar */ 
 .navbar {
@@ -51,11 +46,8 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     gap: 20px;
-}
-
-.nav-socials a {
-    color: #222;
     font-size: 20px;
+    margin-right: 20px;
 }
 
 .navbar .logo img {
@@ -75,5 +67,66 @@ h1, h2, h3 {
 @media (max-width: 768px) {
     .nav-socials {
         display: none;
+    }
+}
+
+
+/* Hero */
+
+.hero {
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8% 8%;
+    gap: 30px;
+    background: var(--text);
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-family: "Quantico", sans-serif;
+    font-size: 4rem;
+    line-height: 0.95;
+    font-weight: 600;
+
+    margin: 0 0 1.5rem;
+}
+
+.hero-description {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #a8a8a8;
+
+    max-width: 500px;
+    margin-bottom: 2rem;
+}
+
+.hero-image {
+    width: 48%;
+    display: flex;
+    margin-right: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 4rem 6%;
+    }
+    .hero h1 {
+        font-size: 3.2rem;
+    }
+    .hero-image {
+        width: 100%;
+        margin-top: 1rem;
     }
 }
