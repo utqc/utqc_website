@@ -1,5 +1,79 @@
+/* Defining Basics */
+
 :root {
     --background: #e2e8f0;
     --accent: #F0B13E;
     --text:#142544;
+}
+
+body {
+    font-family: "Space Grotesk", sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+}
+
+.quantum-accent {
+    font-family: "Quantico", sans-serif;
+}
+
+
+
+/* Navbar */ 
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 5%;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #222;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+}
+
+.nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-socials a {
+    color: #222;
+    font-size: 20px;
+}
+
+.navbar .logo img {
+    height: 50px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .nav-socials {
+        display: none;
+    }
 }
