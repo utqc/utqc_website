@@ -97,9 +97,10 @@ h1, h2, h3 {
     margin: 0 0 1.5rem;
 }
 
-.hero-description {
+.hero p {
     font-family: "Space Grotesk", sans-serif;
     font-size: 1.1rem;
+    font-size: 1.3rem;
     line-height: 1.6;
     color: #a8a8a8;
 
@@ -125,7 +126,6 @@ h1, h2, h3 {
         font-size: 3.2rem;
     }
     .hero-image {
-        width: 100%;
-        margin-top: 1rem;
+        display: none;
     }
 }
