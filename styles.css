@@ -77,43 +77,51 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8% 8%;
+    padding: 4% 7% 4% 10%;
     gap: 30px;
     background: var(--text);
     color: #ffffff;
     overflow: hidden;
-}
-
-.hero-content {
-    max-width: 600px;
+    margin-left: 2;
 }
 
 .hero h1 {
     font-family: "Quantico", sans-serif;
-    font-size: 4rem;
-    line-height: 0.95;
+    font-size: 4.5rem;
+    line-height: 0.98;
     font-weight: 600;
-
-    margin: 0 0 1.5rem;
+    margin: 0 2;
 }
 
 .hero p {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 1.1rem;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     line-height: 1.6;
-    color: #a8a8a8;
+    color: #d9d2d2;
+    margin: 0 2;
+    margin-bottom: 2rem;
+}
 
-    max-width: 500px;
+.hero p {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #d9d2d2;
+    margin: 0 2;
     margin-bottom: 2rem;
 }
 
 .hero-image {
-    width: 48%;
+    width: 50%;
     display: flex;
-    margin-right: 0;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.hero-image img {
+    max-width: 80%;
+    height: auto;
 }
 
 @media (max-width: 768px) {
