@@ -113,7 +113,7 @@ h1, h2, h3 {
 }
 
 .hero-image {
-    flex: 0 0 380px;
+    flex: 0 0 360px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,13 +128,34 @@ h1, h2, h3 {
 @media (max-width: 768px) {
     .hero {
         flex-direction: column;
-        text-align: center;
-        padding: 4rem 6%;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        padding: 50px 6%;
     }
-    .hero h1 {
-        font-size: 3.2rem;
-    }
+
     .hero-image {
-        display: none;
+        display: flex;
+        flex: 0 0 auto;
+    }
+
+    .hero-image img {
+        width: 220px;
+        height: auto;
+    }
+
+    .hero-content {
+        flex: 0 1 auto;
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+        line-height: 1.05;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        margin-top: 20px;
     }
 }
