@@ -175,7 +175,8 @@ h1, h2, h3 {
 
 .about-label {
     font-family: "Quantico", sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    line-height: 2;
     letter-spacing: 0.15em;
     color: var(--accent);
 }
