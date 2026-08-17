@@ -77,20 +77,30 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4% 7% 4% 10%;
-    gap: 30px;
-    background: var(--text);
-    color: #ffffff;
+    gap: 70px;
+    padding: 60px 8%;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.65), var(--text)),
+        url('assets/qubits.gif');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--background);
     overflow: hidden;
-    margin-left: 2;
+}
+
+.hero-content {
+    flex: 0 1 700px;
+    text-align: center;
 }
 
 .hero h1 {
     font-family: "Quantico", sans-serif;
-    font-size: 4.5rem;
+    font-size: 4rem;
     line-height: 0.98;
     font-weight: 600;
-    margin: 0 2;
+    margin: 0;
 }
 
 .hero p {
@@ -98,30 +108,21 @@ h1, h2, h3 {
     font-size: 1.6rem;
     line-height: 1.6;
     color: #d9d2d2;
-    margin: 0 2;
-    margin-bottom: 2rem;
-}
-
-.hero p {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 1.6rem;
-    line-height: 1.6;
-    color: #d9d2d2;
-    margin: 0 2;
-    margin-bottom: 2rem;
+    margin: 25px 0 0;
+    text-align: center;
 }
 
 .hero-image {
-    width: 50%;
+    flex: 0 0 380px;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 .hero-image img {
-    max-width: 80%;
+    width: 100%;
     height: auto;
+    display: block;
 }
 
 @media (max-width: 768px) {
