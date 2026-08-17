@@ -96,7 +96,7 @@ h1, h2, h3 {
 }
 
 .hero h1 {
-    font-family: "Quantico", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 4rem;
     line-height: 0.98;
     font-weight: 600;
@@ -104,10 +104,10 @@ h1, h2, h3 {
 }
 
 .hero p {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Quantico", sans-serif;
     font-size: 1.6rem;
     line-height: 1.6;
-    color: #d9d2d2;
+    color: var(--accent);
     margin: 25px 0 0;
     text-align: center;
 }
@@ -158,4 +158,63 @@ h1, h2, h3 {
         font-size: 1.2rem;
         margin-top: 20px;
     }
+}
+
+
+/* About Section */
+
+.about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 8%;
+    background: #ffffff;
+    color: #111111;
+    gap: 5rem;
+}
+
+.about-label {
+    font-family: "Quantico", sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+}
+
+.about-content {
+    max-width: 700px;
+}
+
+.about h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2.6rem;
+    line-height: 1.05;
+    font-weight: 500;
+    margin: 0 0 1.5rem;
+}
+
+.about p {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+
+    color: var(--text);
+    max-width: 600px;
+}
+
+.about-link {
+    background-color: #F0B13E;
+    padding: 5px;
+    border-radius: 10%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    font-family: "Space Grotesk", sans-serif;
+    color: #111;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.about-link:hover {
+    gap: 1rem;
 }
