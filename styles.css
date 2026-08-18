@@ -16,6 +16,7 @@ h1, h2, h3 {
 }
 
 
+
 /* Navbar */ 
 .navbar {
     display: flex;
@@ -236,7 +237,6 @@ h1, h2, h3 {
     padding: 2rem 4%;
     background: var(--text);
     color: var(--background);
-
     gap: 3rem;
 }
 
@@ -332,6 +332,71 @@ h1, h2, h3 {
     color: var(--text);
     margin: 0;
 }
+
+
+
+/* Contact */
+
+.get-in-touch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5rem;
+    padding: 3rem 12%;
+    background: var(--background);
+    color: var(--text);
+}
+
+.contact-heading{
+    flex: 1.3;
+}
+
+.contact-heading span {
+    font-family: "Quantico", sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+}
+
+.contact-heading h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 3.4rem;
+    font-weight: 600;
+    margin: 0.75rem 0 0;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex: 1;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.contact-detail i {
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+    color: var(--accent);
+}
+
+.contact-detail h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1rem;
+    margin: 0 0 0.4rem;
+    color: black;
+}
+
+.contact-detail p, .contact-detail a{
+    font-family: "Space Grotesk", sans-serif;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+
 
 /* Footer */
 
