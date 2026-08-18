@@ -437,3 +437,33 @@ footer hr {
 .copyr{
     color: var(--background);
 }
+
+
+
+/* EVENTS PAGE */
+
+/* HEADER */
+/* Other Page Header */
+
+.other-page-header {
+    min-height: 15vh;
+    padding: 3rem 12%;
+    background: var(--text);
+    color: var(--background);
+}
+
+.other-page-header h1 {
+    text-align: center;
+    font-family: "Quantico", sans-serif;
+    font-size: 5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.other-page-header h2 {
+    text-align: center;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 0;
+}
