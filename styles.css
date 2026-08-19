@@ -522,3 +522,110 @@ footer hr {
     font-weight: 600;
     margin: 0;
 }
+
+
+
+
+
+/* TEAM */
+
+.team-section {
+    padding: 5rem 12%;
+}
+
+.team-section h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2.6rem;
+    font-weight: 500;
+    margin: 0 0 2rem;
+    color: black;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2rem;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.member-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #eee;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+
+/* LinkedIn */
+
+.linkedin {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    font-size: 2rem;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.member-image:hover .linkedin {
+    opacity: 1;
+}
+
+.member-image:hover img {
+    transform: scale(1.05);
+}
+
+
+/* Name */
+
+.team-member h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 1rem 0 0.25rem;
+}
+
+.team-member p {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.98rem;
+    color: #4b4b4b;
+    margin: 0;
+}
+
+
+@media (max-width: 768px) {
+
+    .team-section {
+        padding: 4rem 7%;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem 1rem;
+    }
+
+    .team-section h2 {
+        font-size: 2rem;
+    }
+
+}
