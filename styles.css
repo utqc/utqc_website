@@ -355,6 +355,12 @@ h1, h2, h3 {
     color: var(--text);
 }
 
+@media (max-width: 768px) {
+    .get-in-touch {
+        flex-direction: column;
+}
+}
+
 .contact-heading{
     flex: 1.3;
 }
