@@ -295,6 +295,14 @@ h1, h2, h3 {
     gap: 2rem;
 }
 
+@media (max-width: 768px) {
+    .offer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+}
+
 .offer-card {
     flex: 1;
     overflow: hidden;
