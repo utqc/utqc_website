@@ -287,6 +287,19 @@ h1, h2, h3 {
     color: black;
 }
 
+.offerss h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.5;
+
+    max-width: 900px;
+    margin: 0 auto;
+
+    text-align: center;
+    color: var(--text);
+}
+
 .link {
     text-decoration: none;
     color: black;
@@ -303,6 +316,10 @@ h1, h2, h3 {
     flex-direction: column;
     gap: 2rem;
 }
+
+    .offerss h3{
+        font-size:1.5rem;
+    }
 }
 
 .offer-card {
