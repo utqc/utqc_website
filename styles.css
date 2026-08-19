@@ -464,12 +464,9 @@ footer hr {
 
 
 /* EVENTS PAGE */
-
-/* HEADER */
 /* Other Page Header */
 
 .other-page-header {
-    min-height: 15vh;
     padding: 3rem 12%;
     background: var(--text);
     color: var(--background);
