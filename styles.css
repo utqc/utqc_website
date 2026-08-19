@@ -545,7 +545,7 @@ footer hr {
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 2fr);
     gap: 3rem 2rem;
 }
 
@@ -560,6 +560,7 @@ footer hr {
     overflow: hidden;
     border-radius: 6px;
     background: #eee;
+    border: dotted 0.7px rgba(0, 0, 0)
 }
 
 .member-image img {
