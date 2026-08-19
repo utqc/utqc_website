@@ -600,16 +600,17 @@ footer hr {
 /* Name */
 
 .team-member h3 {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Quantico";
     font-size: 1.2rem;
     font-weight: 500;
     margin: 1rem 0 0.25rem;
+    color: var(--accent)
 }
 
 .team-member p {
     font-family: "Space Grotesk", sans-serif;
     font-size: 0.98rem;
-    color: #4b4b4b;
+    color: var(--text);
     margin: 0;
 }
 
