@@ -423,6 +423,13 @@ footer {
     overflow: hidden;
 }
 
+@media (max-width: 768px) {
+footer {
+    padding-right: 2px;
+    padding-left: 2px;
+}
+}
+
 footer hr {
     border-top: 1px solid #2a2a2a;
     margin: 0 0 1.5rem;
