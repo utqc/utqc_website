@@ -69,6 +69,9 @@ h1, h2, h3 {
     .nav-socials {
         display: none;
     }
+    .nav-links a:first-child {
+        display: none;
+    }
 }
 
 
