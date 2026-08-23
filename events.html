@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="UofT Quantum Computing Club">
+    <meta name="description" content="Upcoming events from the University of Toronto Quantum Computing Club">
     <meta name="author" content="UTQC Web Dev Team">
-    <title>UofT Quantum Computing Club</title>
+    <title>Events &middot; UofT Quantum Computing Club</title>
     <link rel="icon" type="image/png" href="assets/utqclogo_transparent.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,52 +15,301 @@
     <link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
-
 <body>
-  <header>
-    <nav class="navbar">
-        <div class="nav-left">
-            <div class="logo"><a href="index.html">
+    <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <div class="logo"><a href="index.html">
                     <img src="assets/utqclogo_transparent.png" alt="UTQC">
-            </a></div>
+                </a></div>
 
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="events.html">Events</a>
-                <a href="projects.html">Projects</a>
-                <a href="team_page.html">Team</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="events.html">Events</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="team_page.html">Team</a>
+                </div>
             </div>
 
-        </div>
-
-        <div class="nav-socials">
-            <a href="mailto:quantum.uoft@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://www.instagram.com/uoft.quantum"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/utqc"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://discord.com/invite/6dtpaUn6s7"><i class="fa-brands fa-discord"></i></a>
-        </div>
-    </nav>
+            <div class="nav-socials">
+                <a href="mailto:quantum.uoft@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://www.instagram.com/uoft.quantum" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/utqc" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://discord.com/invite/6dtpaUn6s7" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            </div>
+        </nav>
     </header>
 
-    <body>
+    <main>
         <section class="other-page-header">
-            <h1> Events </h1>
+            <h1>Events</h1>
         </section>
 
-    </body>
+        <section class="ev-section">
 
+            <div class="ev-intro">
+                <p class="ev-lede">
+                    Lectures, workshops, socials and industry nights &mdash; pulled straight from the
+                    club calendar, so this page is never out of date.
+                </p>
+                <div class="ev-subscribe" id="ev-subscribe" hidden>
+                    <a class="ev-btn" id="ev-sub-google" href="#" target="_blank" rel="noopener">
+                        <i class="fa-regular fa-calendar-plus"></i> Add to Google Calendar
+                    </a>
+                    <a class="ev-btn ev-btn-ghost" id="ev-sub-ical" href="#">
+                        <i class="fa-regular fa-calendar"></i> Apple or Outlook
+                    </a>
+                </div>
+            </div>
 
-    
+            <h2>Upcoming</h2>
+
+            <div class="ev-list" id="ev-list" aria-live="polite" aria-busy="true">
+                <!-- Placeholder cards, replaced as soon as the feed loads. -->
+                <div class="ev-card ev-skeleton" aria-hidden="true">
+                    <div class="ev-date"></div>
+                    <div class="ev-body">
+                        <span class="ev-bar ev-bar-lg"></span>
+                        <span class="ev-bar ev-bar-sm"></span>
+                        <span class="ev-bar"></span>
+                    </div>
+                </div>
+                <div class="ev-card ev-skeleton" aria-hidden="true">
+                    <div class="ev-date"></div>
+                    <div class="ev-body">
+                        <span class="ev-bar ev-bar-lg"></span>
+                        <span class="ev-bar ev-bar-sm"></span>
+                        <span class="ev-bar"></span>
+                    </div>
+                </div>
+                <p class="ev-loading-text">Loading events&hellip;</p>
+            </div>
+
+        </section>
+    </main>
+
     <footer>
         <hr>
         <div class="footer-socials">
-            <a href="mailto:quantum.uoft@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://www.instagram.com/uoft.quantum"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/utqc"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://discord.com/invite/6dtpaUn6s7"><i class="fa-brands fa-discord"></i></a>
+            <a href="mailto:quantum.uoft@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://www.instagram.com/uoft.quantum" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/utqc" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://discord.com/invite/6dtpaUn6s7" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         </div>
         <br>
-        <span class="copyr">© 2026 University of Toronto Quantum Computing Club. All rights reserved.</span>
+        <span class="copyr">&copy; 2026 University of Toronto Quantum Computing Club. All rights reserved.</span>
         <br><br>
         <span class="copyr">Designed by Yusyra Hossain.</span>
     </footer>
+
+<script>
+(function () {
+    'use strict';
+
+    var TZ = 'America/Toronto';
+    var LOCALE = 'en-CA';
+    var list = document.getElementById('ev-list');
+
+    /*  date + time helpers  */
+
+    function toDate(value, allDay) {
+        if (allDay) {
+            var p = value.split('-');
+            return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
+        }
+        return new Date(value);
+    }
+
+    function fmt(date, opts, allDay) {
+        opts.timeZone = allDay ? 'UTC' : TZ;
+        return new Intl.DateTimeFormat(LOCALE, opts).format(date);
+    }
+
+    function timeLabel(ev) {
+        if (ev.allDay) return 'All day';
+        var start = toDate(ev.start, false);
+        var opts = { hour: 'numeric', minute: '2-digit' };
+        var label = fmt(start, Object.assign({}, opts), false);
+        if (ev.end) {
+            var end = toDate(ev.end, false);
+            // Only show a range when the event ends on the same day.
+            var sameDay = fmt(start, { dateStyle: 'short' }, false) ===
+                          fmt(end, { dateStyle: 'short' }, false);
+            if (sameDay) label += ' – ' + fmt(end, Object.assign({}, opts), false);
+        }
+        return label;
+    }
+
+    function weekdayLabel(ev) {
+        var start = toDate(ev.start, ev.allDay);
+        var long = { weekday: 'long', month: 'long', day: 'numeric' };
+        var label = fmt(start, Object.assign({}, long), ev.allDay);
+
+        if (ev.allDay && ev.end) {
+            var last = toDate(ev.end, true);
+            last.setUTCDate(last.getUTCDate() - 1);
+            if (last > start) {
+                label += ' – ' + fmt(last, { month: 'long', day: 'numeric' }, true);
+            }
+        }
+        return label;
+    }
+
+    /* ---------- "add to my calendar" link ---------------------------- */
+
+    function stamp(date, allDay) {
+        var iso = date.toISOString().replace(/[-:]/g, '');
+        return allDay ? iso.slice(0, 8) : iso.slice(0, 15) + 'Z';
+    }
+
+    function addToCalendarUrl(ev) {
+        var start = toDate(ev.start, ev.allDay);
+        var end = ev.end ? toDate(ev.end, ev.allDay)
+                         : new Date(start.getTime() + 60 * 60 * 1000);
+        var params = new URLSearchParams({
+            action: 'TEMPLATE',
+            text: ev.title,
+            dates: stamp(start, ev.allDay) + '/' + stamp(end, ev.allDay)
+        });
+        if (ev.description) params.set('details', ev.description.slice(0, 900));
+        if (ev.location) params.set('location', ev.location);
+        return 'https://calendar.google.com/calendar/render?' + params;
+    }
+
+    /*  rendering  */
+
+    // so a stray "<" doesnt break it
+    function el(tag, className, text) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text != null) node.textContent = text;
+        return node;
+    }
+
+    function icon(name) {
+        var i = document.createElement('i');
+        i.className = name;
+        i.setAttribute('aria-hidden', 'true');
+        return i;
+    }
+
+    function fact(iconName, text) {
+        var li = el('li');
+        li.appendChild(icon(iconName));
+        li.appendChild(document.createTextNode(' ' + text));
+        return li;
+    }
+
+    function card(ev) {
+        var start = toDate(ev.start, ev.allDay);
+        var article = el('article', 'ev-card');
+
+        var date = el('div', 'ev-date');
+        date.appendChild(el('span', 'ev-month',
+            fmt(start, { month: 'short' }, ev.allDay).toUpperCase()));
+        date.appendChild(el('span', 'ev-day',
+            fmt(start, { day: 'numeric' }, ev.allDay)));
+        article.appendChild(date);
+
+        var body = el('div', 'ev-body');
+        if (ev.type) body.appendChild(el('span', 'ev-tag', ev.type));
+        body.appendChild(el('h3', 'ev-title', ev.title));
+
+        var facts = el('ul', 'ev-facts');
+        facts.appendChild(fact('fa-regular fa-calendar', weekdayLabel(ev)));
+        facts.appendChild(fact('fa-regular fa-clock', timeLabel(ev)));
+        if (ev.location) facts.appendChild(fact('fa-solid fa-location-dot', ev.location));
+        body.appendChild(facts);
+
+        if (ev.description) body.appendChild(el('p', 'ev-desc', ev.description));
+
+        var actions = el('div', 'ev-actions');
+        if (ev.rsvp) {
+            var rsvp = el('a', 'ev-btn', 'RSVP');
+            rsvp.href = ev.rsvp;
+            rsvp.target = '_blank';
+            rsvp.rel = 'noopener';
+            actions.appendChild(rsvp);
+        }
+        var add = el('a', 'ev-btn ev-btn-ghost', 'Add to calendar');
+        add.href = addToCalendarUrl(ev);
+        add.target = '_blank';
+        add.rel = 'noopener';
+        actions.appendChild(add);
+        body.appendChild(actions);
+
+        article.appendChild(body);
+        return article;
+    }
+
+    function message(title, body, isError) {
+        var box = el('div', 'ev-empty' + (isError ? ' ev-empty-error' : ''));
+        box.appendChild(el('h3', null, title));
+        box.appendChild(el('p', null, body));
+        var discord = el('a', 'ev-btn', 'Join the Discord');
+        discord.href = 'https://discord.com/invite/6dtpaUn6s7';
+        discord.target = '_blank';
+        discord.rel = 'noopener';
+        box.appendChild(discord);
+        return box;
+    }
+
+    function setSubscribeLinks(calendarId) {
+        if (!calendarId) return;
+        var bar = document.getElementById('ev-subscribe');
+        var id = encodeURIComponent(calendarId);
+        document.getElementById('ev-sub-google').href =
+            'https://calendar.google.com/calendar/render?cid=' + id;
+        document.getElementById('ev-sub-ical').href =
+            'webcal://calendar.google.com/calendar/ical/' + id + '/public/basic.ics';
+        bar.hidden = false;
+    }
+
+    
+    fetch('/api/events')
+        .then(function (res) {
+            
+            return res.json().then(function (data) {
+                if (!res.ok) {
+                    data.failed = true;
+                    data.statusCode = res.status;
+                }
+                return data;
+            });
+        })
+        .then(function (data) {
+            if (data.failed) {
+                setSubscribeLinks(data.calendarId);
+                throw new Error('feed returned ' + data.statusCode);
+            }
+            list.innerHTML = '';
+            list.setAttribute('aria-busy', 'false');
+            setSubscribeLinks(data.calendarId);
+
+            if (!data.events || !data.events.length) {
+                list.appendChild(message(
+                    'Nothing scheduled right now',
+                    'Check our Discord for what is coming up.',
+                    false
+                ));
+                return;
+            }
+
+            var frag = document.createDocumentFragment();
+            data.events.forEach(function (ev) { frag.appendChild(card(ev)); });
+            list.appendChild(frag);
+        })
+        .catch(function (err) {
+            console.error('[events]', err);
+            list.innerHTML = '';
+            list.setAttribute('aria-busy', 'false');
+            list.appendChild(message(
+                'We could not load the calendar',
+                'Something went wrong fetching our events. Try refreshing, or check the Discord for what is coming up.',
+                true
+            ));
+        });
+})();
+</script>
+</body>
+</html>

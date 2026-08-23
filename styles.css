@@ -631,3 +631,334 @@ footer hr {
     }
 
 }
+
+/* EVENTS PAGE  */
+
+.ev-section {
+    padding: 4rem 8%;
+    background: #ffffff;
+}
+
+.ev-section h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2.6rem;
+    font-weight: 500;
+    margin: 0 0 2rem;
+    color: black;
+}
+
+.ev-intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 2.5rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.ev-lede {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text);
+    max-width: 46ch;
+    margin: 0;
+}
+
+.ev-subscribe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+
+/* Buttons */
+
+.ev-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 6px;
+    border: 2px solid var(--accent);
+    background: var(--accent);
+    color: #111;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.ev-btn:hover {
+    transform: translateY(-2px);
+}
+
+.ev-btn:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+
+.ev-btn-ghost {
+    background: transparent;
+    border-color: #2a2a2a;
+    color: var(--text);
+}
+
+.ev-btn-ghost:hover {
+    background: var(--background);
+}
+
+
+/* Card list */
+
+.ev-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.ev-card {
+    display: flex;
+    gap: 1.75rem;
+    padding: 1.75rem;
+    border: 2px dashed #2a2a2a;
+    border-radius: 8px;
+    background: #ffffff;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.ev-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+}
+
+
+/* Date chip */
+
+.ev-date {
+    flex: 0 0 84px;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 0.5rem;
+    border-radius: 6px;
+    background: var(--text);
+    color: var(--background);
+}
+
+.ev-month {
+    font-family: "Quantico", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+}
+
+.ev-day {
+    font-family: "Quantico", sans-serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+
+/* Card body */
+
+.ev-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.ev-tag {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    font-family: "Quantico", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a5a0a;
+}
+
+.ev-title {
+    font-family: "Quantico", sans-serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 0.85rem;
+    color: var(--accent);
+}
+
+.ev-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+    list-style: none;
+    margin: 0 0 0.9rem;
+    padding: 0;
+}
+
+.ev-facts li {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.ev-facts i {
+    color: var(--accent);
+    margin-right: 0.15rem;
+}
+
+.ev-desc {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--text);
+    margin: 0 0 1.1rem;
+    max-width: 65ch;
+    white-space: pre-line;
+}
+
+.ev-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+
+/* Empty and error states */
+
+.ev-empty {
+    padding: 3rem 2rem;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    text-align: center;
+    background: var(--background);
+}
+
+.ev-empty h3 {
+    font-family: "Quantico", sans-serif;
+    font-size: 1.4rem;
+    margin: 0 0 0.6rem;
+    color: var(--text);
+}
+
+.ev-empty p {
+    font-family: "Space Grotesk", sans-serif;
+    color: var(--text);
+    max-width: 48ch;
+    margin: 0 auto 1.5rem;
+}
+
+.ev-empty-error {
+    border-color: #c0836c;
+}
+
+
+/* Loading placeholders */
+
+.ev-skeleton {
+    border-style: solid;
+    border-color: #e8e8e8;
+    pointer-events: none;
+}
+
+.ev-skeleton .ev-date {
+    background: #eceff4;
+    min-height: 88px;
+}
+
+.ev-bar {
+    display: block;
+    height: 0.85rem;
+    margin-bottom: 0.75rem;
+    border-radius: 4px;
+    background: #eceff4;
+}
+
+.ev-bar-lg { height: 1.5rem; width: 55%; }
+.ev-bar-sm { width: 35%; }
+.ev-bar:last-child { width: 80%; }
+
+.ev-skeleton,
+.ev-loading-text {
+    animation: ev-pulse 1.6s ease-in-out infinite;
+}
+
+.ev-loading-text {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.9rem;
+    color: #7a869a;
+    text-align: center;
+    margin: 0;
+}
+
+@keyframes ev-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ev-skeleton,
+    .ev-loading-text { animation: none; }
+    .ev-card:hover,
+    .ev-btn:hover { transform: none; }
+}
+
+
+/* Small screens */
+
+@media (max-width: 768px) {
+    .ev-section {
+        padding: 3rem 7%;
+    }
+
+    .ev-section h2 {
+        font-size: 2rem;
+    }
+
+    .ev-intro {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ev-card {
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.5rem;
+    }
+
+    .ev-date {
+        flex: 0 0 auto;
+        flex-direction: row;
+        align-self: flex-start;
+        gap: 0.6rem;
+        padding: 0.4rem 0.9rem;
+    }
+
+    .ev-day {
+        font-size: 1.5rem;
+    }
+
+    .ev-month {
+        font-size: 0.9rem;
+    }
+
+    .ev-title {
+        font-size: 1.25rem;
+    }
+
+    .ev-actions .ev-btn {
+        flex: 1;
+        justify-content: center;
+    }
+}
