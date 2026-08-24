@@ -1,23 +1,22 @@
 /**
- * GET /api/events  —  UTQC public events feed
  *
  * Required Vercel environment variables:
  *   GOOGLE_CALENDAR_ID   e.g. abc123@group.calendar.google.com
  *   GOOGLE_CALENDAR_KEY  a Google Cloud API key restricted to the Calendar API
  *
- =
  */
 
 const API = 'https://www.googleapis.com/calendar/v3/calendars';
 
-// How many (maximum) upcoming events to return
+// How many upcoming events max
 const MAX_EVENTS = 25;
 
 module.exports = async function handler(request, response) {
-  const calendarId = process.env.GOOGLE_CALENDAR_ID;
-  const apiKey = process.env.GOOGLE_CALENDAR_KEY;
+  const calendarId = normaliseCalendarId(process.env.GOOGLE_CALENDAR_ID);
+  const apiKey = (process.env.GOOGLE_CALENDAR_KEY || '').trim();
 
   if (!calendarId || !apiKey) {
+    // Misconfiguration is our fault, not Google's , not cached
     response.setHeader('Cache-Control', 'no-store');
     return response.status(500).json({
       events: [],
@@ -29,9 +28,9 @@ module.exports = async function handler(request, response) {
     `${API}/${encodeURIComponent(calendarId)}/events?` +
     new URLSearchParams({
       key: apiKey,
-      timeMin: new Date().toISOString(),
+      timeMin: new Date().toISOString(), 
       singleEvents: 'true', 
-      orderBy: 'startTime',
+      orderBy: 'startTime', 
       maxResults: String(MAX_EVENTS),
     });
 
@@ -39,7 +38,22 @@ module.exports = async function handler(request, response) {
   try {
     const res = await fetch(url);
     if (!res.ok) {
-      throw new Error(`Google responded ${res.status}`);
+      
+      const detail = await res.text().catch(() => '');
+      let reason = '';
+      try {
+        reason = JSON.parse(detail)?.error?.message || '';
+      } catch (_) {
+        reason = detail.slice(0, 200);
+      }
+      if (res.status === 404) {
+        reason +=
+          ' — a 404 here almost always means the calendar is not shared publicly' +
+          ' (Settings and sharing > Access permissions > "Make available to public",' +
+          ' with "See all event details"), or GOOGLE_CALENDAR_ID is wrong.' +
+          ` Using calendar id: ${calendarId}`;
+      }
+      throw new Error(`Google responded ${res.status}. ${reason}`);
     }
     ({ items = [] } = await res.json());
   } catch (err) {
@@ -59,6 +73,8 @@ module.exports = async function handler(request, response) {
     .map(normalise);
 
   
+
+
   response.setHeader('Cache-Control', 'public, max-age=300');
   response.setHeader(
     'Vercel-CDN-Cache-Control',
@@ -67,13 +83,43 @@ module.exports = async function handler(request, response) {
 
   return response.status(200).json({
     events,
-    
+    // Public info
     calendarId,
     generatedAt: new Date().toISOString(),
   });
 };
 
-// Trimming so not super long
+
+function normaliseCalendarId(value) {
+  let id = (value || '').trim();
+  if (!id) return '';
+
+  // Someone pasted a whole calendar URL — pull the id back out of it.
+  if (/^https?:\/\//i.test(id)) {
+    const ical = id.match(/\/calendar\/ical\/([^/]+)\//i);
+    if (ical) {
+      id = ical[1]; // .../calendar/ical/<id>/public/basic.ics
+    } else {
+      try {
+        id = new URL(id).searchParams.get('src') || id; // ...embed?src=<id>
+      } catch (_) {
+        
+      }
+    }
+  }
+
+  if (/%[0-9a-f]{2}/i.test(id)) {
+    try {
+      id = decodeURIComponent(id);
+    } catch (_) {
+      /* leave it alone if it isn't valid encoding */
+    }
+  }
+
+  return id.trim();
+}
+
+/** Trim one Google event **/
 function normalise(e) {
   const raw = htmlToText(e.description || '');
   const { rsvp, type, text } = extractMeta(raw);
@@ -93,7 +139,9 @@ function normalise(e) {
   };
 }
 
-
+/**
+ * 
+ */
 const ENTITIES = {
   nbsp: ' ', lt: '<', gt: '>', quot: '"', apos: "'",
   mdash: '—', ndash: '–', hellip: '…',
@@ -126,6 +174,7 @@ function safeChar(code) {
     ? String.fromCodePoint(code)
     : '';
 }
+
 
 function extractMeta(text) {
   let rsvp = null;
