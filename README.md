@@ -34,7 +34,6 @@ The new website was designed to:
 
 The events page includes an integration with Google Calendar to
 dynamically display upcoming UTQC events.
-
 Past events are displayed separately to highlight previous club
 activities and events. THESE ARE STATIC.
 
