@@ -49,7 +49,11 @@ members according to their respective divisions. Once a year ends, make a new pa
 ### Responsive Design
 
 The website is designed to work across screens of different sizes.
-Responsive layouts and CSS media queries are used to acclompish this. SO WHENEVER A NEW PAGE OR ELEMENT IS ADDED, make sure you adjust the CSS for a mobile phone too.
+Responsive layouts and CSS media queries are used to accomplish this. SO WHENEVER A NEW PAGE OR ELEMENT IS ADDED, make sure you adjust the CSS for a mobile phone too.
+
+### Reusable components
+
+The website uses several reusable components to keep the site design cohesive. Please see 'styles.css', and use appropriate elements, accordingly.
 
 ---
 
@@ -84,7 +88,7 @@ utqc_website/
 ├── projects.html
 ├── team.html
 │
-├── styles.css: HERE YOU WILL FIND A LOT OF REUSABLE COMPONENTS, SEE FILE. 
+├── styles.css
 │
 ├── assets/
 │   ├── images/
