@@ -78,21 +78,12 @@ The website uses several reusable components to keep the site design cohesive. P
 
 ---
 
-## Project Structure
+## Development Guidelines
 
-```text
-utqc_website/
-│
-├── index.html
-├── events.html
-├── projects.html
-├── team.html
-│
-├── styles.css
-│
-├── assets/
-│   ├── images/
-│   ├── logos/
-│   └── ...
-│
-└── README.md
+- The website is primarily built with HTML, CSS, and JavaScript, so there is no complicated setup required.
+- Keep the HTML structure semantic and organized.
+- The website uses a consistent visual system across pages. Before creating a new style, check whether an existing class or component can be reused.
+- Keep Typography (Quantico for accent text, Space Grotesk for all other), Spacing, and Colours consistent
+- Keep Components reusable
+- Keep Responsive behaviour in mind
+- Work on branches to avoid breaking the live website
