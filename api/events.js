@@ -9,11 +9,11 @@
 const API = 'https://www.googleapis.com/calendar/v3/calendars';
 
 // How many upcoming events max
-const MAX_EVENTS = 7;
+const MAX_EVENTS = 5;
 
 module.exports = async function handler(request, response) {
-  const calendarId = normaliseCalendarId(process.env.TESTER_CALENDAR_ID);
-  const apiKey = (process.env.TESTER_CALENDAR_KEY || '').trim();
+  const calendarId = normaliseCalendarId(process.env.GOOGLE_CALENDAR_ID);
+  const apiKey = (process.env.GOOGLE_CALENDAR_KEY || '').trim();
 
   if (!calendarId || !apiKey) {
     // Misconfiguration is our fault, not Google's , not cached
