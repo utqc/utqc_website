@@ -521,7 +521,7 @@
         legend.appendChild(mark);
         var count = Object.keys(byDay).length;
         legend.appendChild(el('span', null,
-            count ? count + (count === 1 ? ' day' : ' days') + ' with something on'
+            count ? count + ' event'+ (count === 1 ? ' day' : ' days')
                   : 'Nothing in the next 30 days'));
         meta.appendChild(legend);
 
