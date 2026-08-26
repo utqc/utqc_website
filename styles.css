@@ -632,7 +632,9 @@ footer hr {
 
 }
 
-/* EVENTS PAGE  */
+/* EVENTS PAGE — event feed
+   Cards rendered from /api/events. Prefixed .ev- so nothing here can
+   collide with the shared .offer-card / .team-* rules above. */
 
 .ev-section {
     padding: 4rem 8%;
@@ -673,30 +675,6 @@ footer hr {
     gap: 0.75rem;
 }
 
-/* Past Event Image */
-
-.past-ev-image {
-    flex: 0 0 220px;
-    height: 180px;
-    overflow: hidden;
-    border-radius: 6px;
-}
-
-.past-ev-image img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    .past-ev-image {
-        width: 100%;
-        height: 200px;
-        flex: none;
-    }
-}
 
 /* Buttons */
 
@@ -756,6 +734,7 @@ footer hr {
 }
 
 .ev-card:hover {
+    transform: translateY(-3px);
     border-color: var(--accent);
 }
 
@@ -848,6 +827,7 @@ footer hr {
     color: var(--text);
     margin: 0 0 1.1rem;
     max-width: 65ch;
+    white-space: pre-line;
 }
 
 .ev-actions {
@@ -983,4 +963,301 @@ footer hr {
         flex: 1;
         justify-content: center;
     }
+}
+
+
+/* EVENTS PAGE: 30-day overview */
+
+.ev-cal {
+    display: grid;
+    grid-template-columns: minmax(0, 400px) 1fr;
+    gap: 1.5rem 2.5rem;
+    align-items: start;
+    align-content: start;
+    padding: 1.75rem;
+    margin-bottom: 2.5rem;
+    border: 2px dashed #2a2a2a;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.ev-cal-meta {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.ev-cal-head h3 {
+    font-family: "Quantico", sans-serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin: 0 0 0.35rem;
+    color: var(--accent);
+}
+
+.ev-cal-range {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.98rem;
+    color: var(--text);
+}
+
+.ev-cal-grid {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 4px;
+    table-layout: fixed;
+}
+
+.ev-cal-grid th {
+    font-family: "Quantico", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #7a869a;
+    padding-bottom: 0.35rem;
+    text-align: center;
+}
+
+.ev-cal-grid td {
+    padding: 0;
+}
+
+
+/* One day */
+
+.ev-cal-day {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+
+    border: 1px solid #e4e9f0;
+    border-radius: 6px;
+    background: transparent;
+
+    font-family: "Space Grotesk", sans-serif;
+    color: #8a94a6;
+    text-align: center;
+}
+
+.ev-cal-num {
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.ev-cal-mon {
+    font-family: "Quantico", sans-serif;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: #8a5a0a;
+}
+
+
+/* Days with something on — navy, matching the date chips on the cards */
+
+.ev-cal-has {
+    border-color: var(--text);
+    background: var(--text);
+    color: var(--background);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ev-cal-has .ev-cal-num {
+    font-weight: 700;
+}
+
+.ev-cal-has .ev-cal-mon {
+    color: var(--accent);
+}
+
+.ev-cal-has:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 0 var(--accent);
+}
+
+.ev-cal-has:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.ev-cal-dots {
+    display: flex;
+    gap: 2px;
+    margin-top: 2px;
+}
+
+.ev-cal-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+
+/* Today */
+
+.ev-cal-today {
+    border: 2px solid var(--accent);
+}
+
+.ev-cal-today:not(.ev-cal-has) {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.ev-cal-pad {
+    background: transparent;
+}
+
+
+/* Legend */
+
+.ev-cal-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.9rem;
+    color: #5b6e8c;
+}
+
+.ev-cal-key {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+}
+
+.ev-cal-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    background: var(--text);
+    box-shadow: 0 2px 0 var(--accent);
+}
+
+
+/* Brief highlight on the card a calendar day points at */
+
+.ev-flash {
+    animation: ev-flash 1.4s ease-out;
+}
+
+@keyframes ev-flash {
+    0%   { border-color: var(--accent); background: #fdf5e6; }
+    100% { border-color: #2a2a2a; background: #ffffff; }
+}
+
+.ev-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ev-cal-has:hover { transform: none; }
+    .ev-flash { animation: none; }
+}
+
+
+/* Small screens events page */
+
+@media (max-width: 768px) {
+    .ev-cal {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 1.5rem;
+    }
+
+    .ev-cal-meta,
+    .ev-cal-grid {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .ev-cal-grid {
+        border-spacing: 3px;
+    }
+
+    .ev-cal-head h3 {
+        font-size: 1.25rem;
+    }
+
+    .ev-cal-num {
+        font-size: 0.88rem;
+    }
+}
+
+
+/* "Next up" summary */
+
+.ev-cal-next {
+    padding-top: 1.25rem;
+    border-top: 1px solid #e4e9f0;
+}
+
+.ev-cal-next h4 {
+    font-family: "Quantico", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7a869a;
+    margin: 0 0 0.5rem;
+}
+
+.ev-cal-next-title {
+    display: block;
+    padding: 0;
+    margin-bottom: 0.3rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    font-family: "Quantico", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: left;
+    color: var(--accent);
+}
+
+.ev-cal-next-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.ev-cal-next-title:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+.ev-cal-next-when {
+    display: block;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.92rem;
+    color: var(--text);
 }

@@ -49,8 +49,8 @@
 
             <div class="ev-intro">
                 <p class="ev-lede">
-                    Lectures, workshops, socials and industry nights; pulled straight from the
-                    club calendar.
+                    Lectures, workshops, socials and industry nights &mdash; pulled straight from the
+                    club calendar, so this page is never out of date.
                 </p>
                 <div class="ev-subscribe" id="ev-subscribe" hidden>
                     <a class="ev-btn" id="ev-sub-google" href="#" target="_blank" rel="noopener">
@@ -62,10 +62,12 @@
                 </div>
             </div>
 
+            <div class="ev-cal" id="ev-cal" hidden></div>
+
             <h2>Upcoming</h2>
 
             <div class="ev-list" id="ev-list" aria-live="polite" aria-busy="true">
-                <!-- Placeholder cards, replaced as soon as the feed loads. -->
+                <!-- Placeholder cards -->
                 <div class="ev-card ev-skeleton" aria-hidden="true">
                     <div class="ev-date"></div>
                     <div class="ev-body">
@@ -84,99 +86,6 @@
                 </div>
                 <p class="ev-loading-text">Loading events&hellip;</p>
             </div>
-
-            
-        <br><br><br><br>
-
-        <h2>Recurring Events</h2>
-
-        <div class="ev-list past-event-list">
-
-            <article class="ev-card past-ev-card">
-                <div class="past-ev-image">
-                    <img src="assets/class_picture.jpg" alt="Quantum Computing Workshop">
-                </div>
-                <div class="ev-body">
-                    <span class="ev-tag">Workshop</span>
-                    <h3 class="ev-title">qLearn</h3>
-                    <p class="ev-desc">
-                        Started since 2023, these are weekly 1-hour sessions run by one of UTQC's upper year academic members on quantum computing foundations.
-                        All majors and years welcome, no prerequisties required!
-                        Every year, two different series covered: quantum hardware and quantum algorithms. 
-                        Sometimes, there are special collabs where you can learn from actual research scientists in the industry. Eg, LG Electronics AI Research Lab of Toronto. 
-                </div>
-            </article>
-
-
-            <article class="ev-card past-ev-card">
-                <div class="past-ev-image">
-                    <img src="assets/events/qisket.jpg">
-                </div>
-                <div class="ev-body">
-                    <span class="ev-tag">Hackathon</span>
-                    <h3 class="ev-title">IBM Qiskit Fall Fest</h3>
-                    <p class="ev-desc">
-                        A unique beginner friendly quantum computing hackathon,
-                        and series of speaker topics that covers quantum computing and frameworks for quantum computing, 
-                        hosted by UTQC with the support of IBM! The main goal is to expose students to the quantum world and allow them to experience all the fun that the world of tech offers. 
-                        Expect techincal workshops, tutorial sessions, activities and challenges between quantum and classical computing, coding with a real quantum computer, and speaker sessions!
-
-                    </p>
-                </div>
-            </article>
-
-
-            <article class="ev-card past-ev-card">
-                <div class="past-ev-image">
-                    <img src="assets/qsite-logo.png">
-                </div>
-                <div class="ev-body">
-                    <span class="ev-tag">Conference</span>
-                    <h3 class="ev-title">Toronto Q-SITE Conference</h3>
-                    <p class="ev-desc">
-                        UTQC's annual conference that brings together students and industry professionals, aka
-                        Canada's largest quantum technologies conference for undergraduate and early-graduate students.
-                        Guests come from across Canada and US to talk about their research in different areas of quantum, and available opportunities at their institutes.
-                        Also hosts hackathons! Find out more <a href="https://www.qsiteconf.ca/">here</a>.
-                    </p>
-                </div>
-            </article>
-
-            
-            <article class="ev-card past-ev-card">
-                <div class="past-ev-image">
-                    <img src="assets/events/QIS.jpg">
-                </div>
-                <div class="ev-body">
-                    <span class="ev-tag">Lecture Series</span>
-                    <h3 class="ev-title">QIS</h3>
-                    <p class="ev-desc">
-                        The Quantum Introductory Symposium program is a series of talks about big ideas in quantum computing.
-                        Designed to be accessible for all audiences, each session is hosted by a Dr/Prof/Grad Student who share their research experience in quantum computing, 
-                        from Quantum Optics to Error Correction and Quantum Algorithms. Speakers include Dr. Thi Ha Kyaw, Prof. Aephraim Steinberg, and more!
-                    </p>
-                </div>
-            </article>
-        
-            
-            <article class="ev-card past-ev-card">
-                <div class="past-ev-image">
-                    <img src="assets/events/quip.jpg">
-                </div>
-                <div class="ev-body">
-                    <span class="ev-tag">Networking</span>
-                    <h3 class="ev-title">QuiP</h3>
-                    <p class="ev-desc">
-                        Panel Discussion about internships and research oppurtunities
-                         with industry experts representing key companies in quantum computing! 
-                        Guest Speakers come from Centre for Quantum Information and Quantum Control (CQIQC) @ UofT, 
-                        Quantrop, Xanadu, MatterLab, Zapata, Institute for Quantum Computing @ UW, 
-                        Stewart Blusson Quantum Matter Institute (SBQMI) @ UBC, and more!
-                    </p>
-                </div>
-            </article>
-
-        </div>
 
         </section>
     </main>
@@ -203,8 +112,10 @@
     var LOCALE = 'en-CA';
     var list = document.getElementById('ev-list');
 
-    /*  date + time helpers  */
+   
 
+    // All-day events arrive as "2026-09-15" with no timezone. Treating that as
+    // UTC 
     function toDate(value, allDay) {
         if (allDay) {
             var p = value.split('-');
@@ -238,6 +149,7 @@
         var long = { weekday: 'long', month: 'long', day: 'numeric' };
         var label = fmt(start, Object.assign({}, long), ev.allDay);
 
+        
         if (ev.allDay && ev.end) {
             var last = toDate(ev.end, true);
             last.setUTCDate(last.getUTCDate() - 1);
@@ -248,7 +160,33 @@
         return label;
     }
 
-    /* ---------- "add to my calendar" link ---------------------------- */
+    // "YYYY-MM-DD"
+    
+    var KEY_FMT = new Intl.DateTimeFormat('en-CA', {
+        timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit'
+    });
+
+    function dayKey(ev, which) {
+        var value = which === 'end' ? ev.end : ev.start;
+        if (!value) return null;
+        if (ev.allDay) {
+            
+            if (which !== 'end') return value;
+            var d = toDate(value, true);
+            d.setUTCDate(d.getUTCDate() - 1);
+            return d.toISOString().slice(0, 10);
+        }
+        return KEY_FMT.format(new Date(value));
+    }
+
+    function addDays(key, n) {
+        var p = key.split('-');
+        var d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
+        d.setUTCDate(d.getUTCDate() + n);
+        return d.toISOString().slice(0, 10);
+    }
+
+    /*"add to my calendar" link */
 
     function stamp(date, allDay) {
         var iso = date.toISOString().replace(/[-:]/g, '');
@@ -269,9 +207,9 @@
         return 'https://calendar.google.com/calendar/render?' + params;
     }
 
-    /*  rendering  */
+    /*  rendering ------- */
 
-    // so a stray "<" doesnt break it
+    
     function el(tag, className, text) {
         var node = document.createElement(tag);
         if (className) node.className = className;
@@ -296,6 +234,7 @@
     function card(ev) {
         var start = toDate(ev.start, ev.allDay);
         var article = el('article', 'ev-card');
+        article.setAttribute('data-day', dayKey(ev, 'start'));
 
         var date = el('div', 'ev-date');
         date.appendChild(el('span', 'ev-month',
@@ -333,6 +272,203 @@
 
         article.appendChild(body);
         return article;
+    }
+
+    
+    var WINDOW_DAYS = 30;
+    var WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    var WEEKDAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+                         'Thursday', 'Friday', 'Saturday'];
+
+    
+    function groupByDay(events, firstKey, lastKey) {
+        var byDay = {};
+        events.forEach(function (ev) {
+            var from = dayKey(ev, 'start');
+            var to = dayKey(ev, 'end') || from;
+            if (!from) return;
+            if (to < from) to = from;
+            if (from < firstKey) from = firstKey;   // already under way
+            for (var k = from; k <= to && k <= lastKey; k = addDays(k, 1)) {
+                (byDay[k] = byDay[k] || []).push(ev);
+            }
+        });
+        return byDay;
+    }
+
+    // Whole days between two date keys, phrased the way a person would say it.
+    function relativeDay(key, todayKey) {
+        var a = toDate(todayKey, true);
+        var b = toDate(key, true);
+        var days = Math.round((b - a) / 86400000);
+        if (days <= 0) return 'Today';
+        if (days === 1) return 'Tomorrow';
+        if (days < 7) return 'In ' + days + ' days';
+        if (days < 14) return 'Next week';
+        return 'In ' + Math.round(days / 7) + ' weeks';
+    }
+
+    function scrollToDay(key) {
+        var target = document.querySelector('.ev-card[data-day="' + key + '"]');
+        if (!target) return;
+        var reduce = window.matchMedia &&
+                     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target.scrollIntoView({
+            behavior: reduce ? 'auto' : 'smooth',
+            block: 'center'
+        });
+        target.classList.remove('ev-flash');
+        void target.offsetWidth;          
+        target.classList.add('ev-flash');
+    }
+
+    function buildCalendar(events) {
+        var host = document.getElementById('ev-cal');
+        var todayKey = KEY_FMT.format(new Date());
+        var lastKey = addDays(todayKey, WINDOW_DAYS - 1);
+        var byDay = groupByDay(events, todayKey, lastKey);
+
+        host.innerHTML = '';
+
+       
+        var meta = el('div', 'ev-cal-meta');
+        var head = el('div', 'ev-cal-head');
+        head.appendChild(el('h3', null, 'Next 30 days'));
+        var firstMonth = fmt(toDate(todayKey, true), { month: 'long', year: 'numeric' }, true);
+        var lastMonth = fmt(toDate(lastKey, true), { month: 'long', year: 'numeric' }, true);
+        head.appendChild(el('span', 'ev-cal-range',
+            firstMonth === lastMonth ? firstMonth : firstMonth + ' – ' + lastMonth));
+        meta.appendChild(head);
+
+        host.appendChild(meta);
+
+        var table = el('table', 'ev-cal-grid');
+        var caption = el('caption', 'ev-visually-hidden',
+            'Days in the next 30 with UTQC events. Select a highlighted day to jump to it.');
+        table.appendChild(caption);
+
+        var thead = el('thead');
+        var hrow = el('tr');
+        WEEKDAYS.forEach(function (letter, i) {
+            var th = el('th', null, letter);
+            th.scope = 'col';
+            
+            th.setAttribute('aria-label', WEEKDAY_NAMES[i]);
+            hrow.appendChild(th);
+        });
+        thead.appendChild(hrow);
+        table.appendChild(thead);
+
+        var tbody = el('tbody');
+        var row = el('tr');
+
+        
+        var startDow = toDate(todayKey, true).getUTCDay();
+        for (var p = 0; p < startDow; p++) {
+            var pad = el('td', 'ev-cal-pad');
+            pad.setAttribute('aria-hidden', 'true');
+            row.appendChild(pad);
+        }
+
+        for (var i = 0; i < WINDOW_DAYS; i++) {
+            var key = addDays(todayKey, i);
+            var date = toDate(key, true);
+            var dayNum = date.getUTCDate();
+            var dayEvents = byDay[key] || [];
+
+            var td = el('td');
+            var cell;
+
+            if (dayEvents.length) {
+                cell = el('button', 'ev-cal-day ev-cal-has ev-cal-jump');
+                cell.type = 'button';
+                cell.setAttribute('data-day', key);
+                cell.title = dayEvents.map(function (e) { return e.title; }).join('\n');
+                cell.setAttribute('aria-label',
+                    fmt(date, { weekday: 'long', month: 'long', day: 'numeric' }, true) +
+                    ' — ' + dayEvents.length +
+                    (dayEvents.length === 1 ? ' event' : ' events') +
+                    ': ' + dayEvents.map(function (e) { return e.title; }).join(', '));
+            } else {
+                cell = el('span', 'ev-cal-day');
+                cell.setAttribute('aria-label',
+                    fmt(date, { month: 'long', day: 'numeric' }, true) + ' — no events');
+            }
+
+            
+            if (dayNum === 1 || i === 0) {
+                cell.appendChild(el('span', 'ev-cal-mon',
+                    fmt(date, { month: 'short' }, true).toUpperCase()));
+            }
+            cell.appendChild(el('span', 'ev-cal-num', String(dayNum)));
+
+            if (dayEvents.length) {
+                var dots = el('span', 'ev-cal-dots');
+                dots.setAttribute('aria-hidden', 'true');
+                for (var d = 0; d < Math.min(dayEvents.length, 3); d++) {
+                    dots.appendChild(el('span', 'ev-cal-dot'));
+                }
+                cell.appendChild(dots);
+            }
+
+            if (key === todayKey) cell.classList.add('ev-cal-today');
+
+            td.appendChild(cell);
+            row.appendChild(td);
+
+            if (row.children.length === 7) {
+                tbody.appendChild(row);
+                row = el('tr');
+            }
+        }
+
+        if (row.children.length) {
+            while (row.children.length < 7) {
+                var tail = el('td', 'ev-cal-pad');
+                tail.setAttribute('aria-hidden', 'true');
+                row.appendChild(tail);
+            }
+            tbody.appendChild(row);
+        }
+
+        table.appendChild(tbody);
+        host.appendChild(table);
+
+        var legend = el('div', 'ev-cal-legend');
+        var mark = el('span', 'ev-cal-key');
+        mark.appendChild(el('span', 'ev-cal-swatch'));
+        mark.appendChild(document.createTextNode(' Event day — select one to jump to it'));
+        legend.appendChild(mark);
+        var count = Object.keys(byDay).length;
+        legend.appendChild(el('span', null,
+            count ? count + (count === 1 ? ' day' : ' days') + ' with something on'
+                  : 'Nothing in the next 30 days'));
+        meta.appendChild(legend);
+
+        //Important
+        var next = events[0];
+        if (next) {
+            var nextKey = dayKey(next, 'start');
+            var box = el('div', 'ev-cal-next');
+            box.appendChild(el('h4', null, 'Next up'));
+
+            var link = el('button', 'ev-cal-next-title ev-cal-jump', next.title);
+            link.type = 'button';
+            link.setAttribute('data-day', nextKey);
+            box.appendChild(link);
+
+            box.appendChild(el('span', 'ev-cal-next-when',
+                relativeDay(nextKey, todayKey) + ' · ' + weekdayLabel(next) +
+                (next.allDay ? '' : ', ' + timeLabel(next))));
+            meta.appendChild(box);
+        }
+
+        host.addEventListener('click', function (e) {
+            var btn = e.target.closest('.ev-cal-jump');
+            if (btn) scrollToDay(btn.getAttribute('data-day'));
+        });
+
+        host.hidden = false;
     }
 
     function message(title, body, isError) {
@@ -382,7 +518,7 @@
             if (!data.events || !data.events.length) {
                 list.appendChild(message(
                     'Nothing scheduled right now',
-                    'Check our Discord for what is coming up.',
+                    'We plan most events a couple of weeks ahead. The Discord is where they get announced first.',
                     false
                 ));
                 return;
@@ -391,6 +527,8 @@
             var frag = document.createDocumentFragment();
             data.events.forEach(function (ev) { frag.appendChild(card(ev)); });
             list.appendChild(frag);
+
+            buildCalendar(data.events);
         })
         .catch(function (err) {
             console.error('[events]', err);
