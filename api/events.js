@@ -9,7 +9,7 @@
 const API = 'https://www.googleapis.com/calendar/v3/calendars';
 
 // How many upcoming events max
-const MAX_EVENTS = 10;
+const MAX_EVENTS = 7;
 
 module.exports = async function handler(request, response) {
   const calendarId = normaliseCalendarId(process.env.TESTER_CALENDAR_ID);
