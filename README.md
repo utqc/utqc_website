@@ -32,10 +32,8 @@ The new website was designed to:
 
 ### Events
 
-The events page includes an integration with Google Calendar to
-dynamically display upcoming UTQC events.
-Past events are displayed separately to highlight previous club
-activities and events. THESE ARE STATIC.
+The events page includes an integration with Google Calendar to dynamically display upcoming UTQC events. It's connected to the quantum.uoft google calander, and the upcoming events add event cards automatically from the calendar (cards capped to 5).
+Recurring events are displayed separately to highlight previous club activities and events. THEY ARE STATIC, so please add on if UTQC has any new recurring events..
 
 ### Projects
 
