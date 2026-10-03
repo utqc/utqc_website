@@ -17,10 +17,38 @@
 
 
 <body>
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen">
+        <div id="welcome-box">
+            <h1>ANNOUNCEMENT</h1>
+
+            <p>
+                IonQ, Qollab, and the UTQC are teaming up for a hackathon taking place Oct 9-11, with a $10,000 global cash prize!!!
+                <h3>REGISTRATION IS NOW OPEN!</h3>
+            </p>
+            <div class="welcome-actions">
+                <button id="got-it-button" class="welcome-button">Got it</button>
+                <a href="events.html#event-highlight" class="welcome-button">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the welcome screen and button elements
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const gotItButton = document.getElementById('got-it-button');
+
+        // Add an event listener to the button
+        gotItButton.addEventListener('click', () => {
+            welcomeScreen.remove();
+        });
+    </script>
+
   <header>
     <nav class="navbar">
         <div class="nav-left">
-            <div class="logo"><a href="index.html">
+             <div class="logo"><a href="index.html">
                     <img src="assets/utqclogo_transparent.png" alt="UTQC">
             </a></div>
 
